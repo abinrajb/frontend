@@ -17,16 +17,16 @@
                     Login Page
                 </div>                
                 <div class="form-floating mb-3">
-                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" #email required>
+                  <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" (input)="loginemail"required>
                   <label for="floatingInput">Email address</label>
                 </div>
                 
                 <div class="form-floating mb-3">
-                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password" #password required>
+                  <input type="password" class="form-control" id="floatingPassword" placeholder="Password"(input)="loginpassword" required>
                   <label for="floatingPassword">Password</label>
                 </div>
                 <div class="form-floating mb-3">Don't have an account? <a routerLink="/signup">Signup</a></div>
-                <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" (click)="loginValue(email.value,password.value)">Login</button>
+                <button class="w-100 btn btn-lg btn-primary mb-3" type="submit">Login</button>
                 
               </form>
     <!-- <script src="signup.js"></script> -->
