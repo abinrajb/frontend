@@ -1,14 +1,35 @@
-import { Component } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Component, inject } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+
+
 
 @Component({
   selector: 'app-login',
+  standalone: true,
+  imports: [FormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
+  
 })
 export class LoginComponent {
-  const loginemail='';
-  
-  loginValue(email:string,password:string){
-    console.log({email,password})
+  loginValue(username: string, password: string) {
+   this.loginObj.username=username;
+   this.loginObj.password=password;
+   console.log(this.loginObj);
   }
+  http= inject(HttpClient);
+ 
+  loginObj:any = {
+    "username":"",
+    "password":""
+  }
+ 
+  onLogin(){
+    // this.http.post("link",this.loginObj).subscribe((res:any)=>{
+      
+    // })
+
+  }
+
 }
