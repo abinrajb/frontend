@@ -11,6 +11,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 @NgModule({
   declarations: [
     AppComponent,
+    LoginComponent,
     SignupComponent,
     HomepageComponent
   ],
