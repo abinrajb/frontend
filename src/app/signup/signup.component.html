@@ -1,6 +1,6 @@
 <div class="d-flex vh-90">
     <div class="container d-flex justify-content-center align-items-center">
-        <form class="w-100" style="max-width: 400px;">
+        <form class="w-100" [formGroup]="signupForm" (ngSubmit)="onSubmit()" style="max-width: 400px;">
             <div class="d-flex justify-content-center mb-4">
                 <img class="mb-4"
                 src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" 
@@ -13,6 +13,7 @@
                 <input type="text" class="form-control" 
                 id="SignupUserName"
                 #SignupUserName 
+                formControlName="username"
                 placeholder="Username">
                 <label for="SignupUserName">Username</label>
             </div>   
@@ -22,6 +23,7 @@
                     class="form-control" 
                     id="SignupFirstName" 
                     #SignupFirstName
+                    formControlName="firstname"
                     placeholder="Firstname"> 
                     <label for="SignupFirstName">Firstname</label>
               </div>
@@ -30,6 +32,7 @@
                     class="form-control" 
                     id="signupLastName"  
                     #signupLastName 
+                    formControlName="lastname"
                     placeholder="Lastname">
                     <label for="signupLastName">Lastname</label>
               </div>
@@ -40,6 +43,7 @@
                 class="form-control" 
                 id="SignupEmail"  
                 #SignupEmail 
+                formControlName="email"
                 placeholder="name@example.com">
                 <label for="SignupEmail">Email address</label>
             </div>
@@ -50,6 +54,7 @@
                   class="form-control" 
                   id="signupCountry"  
                   #signupCountry 
+                  formControlName="country"
                   placeholder="Country">
                   <label for="signupCountry">Country</label>
               </div>
@@ -58,6 +63,7 @@
                   class="form-control" 
                   id="signupPhnNo" 
                   #signupPhnNo 
+                  formControlName="phonenumber"
                   placeholder="Phone Number">
                   <label for="signupPhnNo">Phone Number</label>
               </div>
@@ -67,7 +73,8 @@
                 <input type="password" class="form-control" 
                 id="SignupNewPassword" 
                 #SignupNewPassword 
-                placeholder="New Password">
+                placeholder="New Password"
+                formControlName="newPassword">
                 <label for="SignupNewPassword">New Password</label>
             </div> 
             <div class="form-floating mb-3">
@@ -75,11 +82,15 @@
                 class="form-control" 
                 id="SignupCnfrmPassword" 
                 #SignupCnfrmPassword 
+                formControlName="confirmPassword"
                 placeholder="Confirm Password">
                 <label for="SignupCnfrmPassword">Confirm Password</label>
             </div>  
+            <div class="alert alert-danger" *ngIf="validitysignup===false" role="alert">
+                Passwords do not match.
+            </div>
             <div class="form-floating mb-3">have an account <a routerLink="/login">login</a></div>
-            <button class="w-100 btn btn-lg btn-primary mb-3" (click)="signupValue(
+            <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" (click)="signupValue(
               SignupUserName.value,
               SignupFirstName.value,
               signupLastName.value,
@@ -88,7 +99,8 @@
               signupPhnNo.value,
               SignupNewPassword.value,
               SignupCnfrmPassword.value)"
-             type="submit">Sign in</button>
+             type="submit"
+             >Sign in</button>
         </form>
     </div>
 </div>

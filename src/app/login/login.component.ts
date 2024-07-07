@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, inject } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { Component, inject, OnInit} from '@angular/core';
+import { FormBuilder, FormGroup, Validators} from '@angular/forms';
 
 
 
@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './login.component.css',
   
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   loginValue(username: string, password: string) {
    this.loginObj.username=username;
    this.loginObj.password=password;
@@ -23,11 +23,32 @@ export class LoginComponent {
     "password":""
   }
  
-  onLogin(){
-    // this.http.post("link",this.loginObj).subscribe((res:any)=>{
+  // onLogin(){
+  //   // this.http.post("link",this.loginObj).subscribe((res:any)=>{
       
-    // })
+  //   // })
 
+  // }
+  validitysignup=true
+  loginForm!: FormGroup;
+
+
+  constructor(private fb: FormBuilder) {}
+
+  ngOnInit(): void {
+    this.loginForm = this.fb.group({
+      usernameForm: ['', Validators.required],
+      passwordForm: ['', Validators.required]
+    });
   }
+
+  onSubmit(): void {
+    if (this.loginForm.valid) {
+      this.validitysignup=true;
+    } else {
+      this.validitysignup=false;
+    }
+  }
+
 
 }
