@@ -1,5 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
 import { SharedService } from '../shared.service';
 
 @Component({
@@ -7,35 +6,33 @@ import { SharedService } from '../shared.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit {
-  loginForm!: FormGroup;
+export class LoginComponent {
   errorMessage: string = '';
-  private sharedService = inject(SharedService);
+  loginObj: any = {
+    username: '',
+    password: ''
+  };
+  private sharedService: SharedService;
 
-  constructor(private fb: FormBuilder) { }
-
-  ngOnInit(): void {
-    this.loginForm = this.fb.group({
-      username: ['', Validators.required],
-      password: ['', Validators.required]
-    });
+  constructor(sharedService: SharedService) {
+    this.sharedService = sharedService;
   }
 
   onSubmit() {
-    if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      this.sharedService.login({ username, password }).subscribe({
-        next: (response: any) => {
-          console.log('Login successful', response);
-          
-          // Handle successful login
-        },
-        error: (err) => {
-          console.error('Login failed', err);
-          this.errorMessage = err.message || 'Invalid username or password';
-        }
-      });
+    if (!this.loginObj.username || !this.loginObj.password) {
+      this.errorMessage = 'Please fill all required fields.';
+      return;
     }
+
+    this.sharedService.login(this.loginObj).subscribe({
+      next: (response: any) => {
+        console.log('Login successful', response);
+        // Handle successful login
+      },
+      error: (err) => {
+        console.error('Login failed', err);
+        this.errorMessage = err.message || 'Invalid username or password';
+      }
+    });
   }
 }
-
