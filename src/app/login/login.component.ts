@@ -1,54 +1,41 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, inject, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup, Validators} from '@angular/forms';
-
-
+import { Component, OnInit, inject } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { SharedService } from '../shared.service';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
-  
+  styleUrls: ['./login.component.css'],
 })
-export class LoginComponent implements OnInit{
-  loginValue(username: string, password: string) {
-   this.loginObj.username=username;
-   this.loginObj.password=password;
-   console.log(this.loginObj);
-  }
-  http= inject(HttpClient);
- 
-  loginObj:any = {
-    "username":"",
-    "password":""
-  }
- 
-  // onLogin(){
-  //   // this.http.post("link",this.loginObj).subscribe((res:any)=>{
-      
-  //   // })
-
-  // }
-  validitysignup=true
+export class LoginComponent implements OnInit {
   loginForm!: FormGroup;
+  errorMessage: string = '';
+  private sharedService = inject(SharedService);
 
-
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      usernameForm: ['', Validators.required],
-      passwordForm: ['', Validators.required]
+      username: ['', Validators.required],
+      password: ['', Validators.required]
     });
   }
 
-  onSubmit(): void {
+  onSubmit() {
     if (this.loginForm.valid) {
-      this.validitysignup=true;
-    } else {
-      this.validitysignup=false;
+      const { username, password } = this.loginForm.value;
+      this.sharedService.login({ username, password }).subscribe({
+        next: (response: any) => {
+          console.log('Login successful', response);
+          
+          // Handle successful login
+        },
+        error: (err) => {
+          console.error('Login failed', err);
+          this.errorMessage = err.message || 'Invalid username or password';
+        }
+      });
     }
   }
-
-
 }
+

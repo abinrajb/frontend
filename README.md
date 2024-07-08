@@ -25,3 +25,38 @@ Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To u
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+
+  // Method to get data from server
+  getData(): Observable<any> {
+    return this.http.get<any>(`${this.baseUrl}/data`);
+  }
+
+  // Method to post data to server
+  postData(data: any): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/data`, data);
+  }
+
+
+    // Method to get data from server
+  getData() {
+    this.sharedService.getData().subscribe({
+      next: response => {
+        console.log('Data fetched successfully', response);
+      },
+      error: err => {
+        console.error('Error fetching data', err);
+      }
+    });
+  }
+
+  // Method to post data to server
+  postData(data: any) {
+    this.sharedService.postData(data).subscribe({
+      next: response => {
+        console.log('Data posted successfully', response);
+      },
+      error: err => {
+        console.error('Error posting data', err);
+      }
+    });
+  }

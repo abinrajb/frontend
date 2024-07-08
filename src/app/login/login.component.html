@@ -1,47 +1,34 @@
 <div class="d-flex vh-100">
   <div class="container d-flex justify-content-center align-items-center">
-    <form class="w-100" [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="max-width: 400px;">
-        <div class="d-flex justify-content-center mb-4">
-          <img class="mb-4"  
-          src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" 
-          alt="" width="72" height="57">
-        </div>
-        <div class="d-flex justify-content-center mb-4 font-weight-bold">
-            Login Page
-        </div>                
-        <div class="form-floating mb-3">
-          <div class="form-floating mb-3">
-              <input type="text" 
-              class="form-control" 
-              id="username" 
-              name="username" 
-              placeholder="User Name" 
-              formControlName="usernameForm"
-              #username
-              required>
-              <label for="username">Username</label>
-          </div>
-          
-          <div class="form-floating mb-3">
-              <input type="password" 
-              class="form-control" 
-              id="password" 
-              name="password" 
-              placeholder="Password" 
-              formControlName="passwordForm"
-              #password 
-              required>
-             <label for="password">Password</label>
-          </div>
-          <div class="alert alert-danger" *ngIf="validitysignup===false" role="alert">
-            Please fill all required fields.
-        </div>
-        </div>  
-        <div class="form-floating mb-3">Don't have an account? <a routerLink="/signup">Signup</a></div>
-          <button class="w-100 btn btn-lg btn-primary mb-3" 
-          type="submit"
-          (click)="loginValue(username.value,password.value)">Login</button>
-      </form>
+    <form class="w-100" [formGroup]="loginForm" (ngSubmit)="onSubmit()" style="max-width: 400px;" aria-labelledby="loginFormTitle">
+      <div class="d-flex justify-content-center mb-4">
+        <img class="mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="logo of webpage" width="72" height="57">
+      </div>
+      <div id="loginFormTitle" class="d-flex justify-content-center mb-4 font-weight-bold">
+        Login Page
+      </div>
+      <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="username" name="username" placeholder="User Name" formControlName="username" aria-required="true" aria-describedby="usernameHelp" required>
+        <label for="username">Username</label>
+        <div 
+        id="usernameHelp" 
+        class="form-text">Enter your username.</div>
+      </div>
+      <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="password" name="password"  placeholder="Password" formControlName="password" aria-required="true"aria-describedby="passwordHelp" required>
+        <label for="password">Password</label>
+        <div id="passwordHelp" 
+        class="form-text">Enter your password.</div>
+      </div>
+      <div class="alert alert-danger" *ngIf="errorMessage" role="alert" aria-live="assertive">
+        {{ errorMessage }}
+      </div>
+      <div class="form-floating mb-3">
+        Don't have an account? <a routerLink="/signup" aria-label="Signup">Signup</a>
+      </div>
+      <button class="w-100 btn btn-lg btn-primary mb-3" 
+      type="submit" 
+      aria-label="Login">Login</button>
+    </form>
   </div>
 </div>
-
