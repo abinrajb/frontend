@@ -1,4 +1,3 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, inject } from '@angular/core';
 import { SharedService } from '../shared.service';
 
@@ -47,10 +46,10 @@ export class SignupComponent {
     this.map1.clear();
     this.errorMessage = '';
 
-  if (!this.isValidName(this.signupObj.firstName)) {
-    this.map1.set('firstNameErrorMessage', "Firstname should only contain alphabets.");
-    return;
-  }
+    if (!this.isValidName(this.signupObj.firstName)) {
+      this.map1.set('firstNameErrorMessage', "Firstname should only contain alphabets.");
+      return;
+    }
     if (!this.isValidName(this.signupObj.lastName)) {
       this.map1.set('LastNameErrorMessage', 'Lastname should only contain alphabets.');
       return;
@@ -60,20 +59,13 @@ export class SignupComponent {
       return;
     }
     if (!this.isValidPhoneNumber(this.signupObj.phoneNo)) {
-      this.map1.set('phoneNoerrorMessage', 'Enter a valid phone number.');
+      this.map1.set('phoneNoerrorMessage', 'Enter a valid phone number.'); 
       return;
     }
-    if (!this.signupObj.userName || !this.signupObj.firstName || !this.signupObj.lastName ||
-      !this.signupObj.email || !this.signupObj.country || !this.signupObj.phoneNo ||
-      !this.signupObj.address || !this.signupObj.password || !this.signupObjForApiCall.ConfirmPassword) {
-    this.errorMessage = 'Please fill all required fields.';
-    return;
-  }
-
-  if (this.signupObj.password !== this.signupObjForApiCall.ConfirmPassword) {
-    this.errorMessage = 'Passwords do not match.';
-    return;
-  }
+    if (this.signupObj.password !== this.signupObjForApiCall.ConfirmPassword) {
+      this.map1.set('passwordErrorMessage', "New password and confirm password doesn't match");
+      return;
+    }
 
     this.sharedService.Signup(this.signupObj).subscribe({
       next: (response: any) => {
@@ -81,7 +73,7 @@ export class SignupComponent {
       },
       error: (err) => {
         console.error('Signup failed', err);
-        this.errorMessage = err.message || 'Signup failed';
+        // this.errorMessage = err.message || 'Signup failed';
       }
     });
   }

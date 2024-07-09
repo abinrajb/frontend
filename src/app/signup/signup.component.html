@@ -54,7 +54,7 @@
               {{map1.get('phoneNoerrorMessage')}}
             </div>
           </div>
-        </div>
+        </div> 
         <div class="form-floating mb-3">
           <input type="text" class="form-control" id="signupAddress" [(ngModel)]="signupObj.address" name="address" placeholder="Address" required aria-required="true" aria-label="Address">
           <label for="signupAddress">Address</label>
@@ -73,8 +73,8 @@
           <div class="form-floating mb-3" style="margin-right: 10px;">
             <input type="password" class="form-control" id="SignupCnfrmPassword" [(ngModel)]="signupObjForApiCall.confirmPassword" name="confirmPassword" placeholder="Confirm Password" required aria-required="true" aria-label="Confirm Password">
             <label for="SignupCnfrmPassword">Confirm Password</label>
-            <div *ngIf="signupObj.password !== signupObjForApiCall.confirmPassword" class="text-danger small" role="alert">
-              Passwords do not match.
+            <div *ngIf="map1.has('passwordErrorMessage')" class="text-danger small" role="alert">
+                 {{map1.get('passwordErrorMessage')}}
             </div>
           </div>
         </div>
