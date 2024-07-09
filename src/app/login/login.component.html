@@ -1,35 +1,38 @@
 <div class="d-flex vh-100">
-  <div class="container d-flex justify-content-center align-items-center">
-    <form class="w-100" (ngSubmit)="onSubmit()" style="max-width: 400px;" aria-labelledby="loginFormTitle" #loginForm="ngForm" novalidate>
-      <div class="d-flex justify-content-center mb-4">
-        <img class="mb-4" src="https://getbootstrap.com/docs/5.0/assets/brand/bootstrap-logo.svg" alt="logo of webpage" width="72" height="57">
-      </div>
-      <div id="loginFormTitle" class="d-flex justify-content-center mb-4 font-weight-bold">
-        Login Page
-      </div>
-      <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="username" name="username" placeholder="User Name" [(ngModel)]="loginObj.username" required aria-required="true" aria-describedby="usernameHelp">
-        <label for="username">Username</label>
-        <div id="usernameHelp" class="form-text">Enter your username.</div>
-        <div *ngIf="!loginObj.username && loginForm.submitted" class="text-danger" role="alert">
-          Username is required.
-        </div>
-      </div>
-      <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="password" name="password" placeholder="Password" [(ngModel)]="loginObj.password" required aria-required="true" aria-describedby="passwordHelp">
-        <label for="password">Password</label>
-        <div id="passwordHelp" class="form-text">Enter your password.</div>
-        <div *ngIf="!loginObj.password && loginForm.submitted" class="text-danger" role="alert">
-          Password is required.
-        </div>
-      </div>
-      <div class="alert alert-danger" *ngIf="errorMessage" role="alert" aria-live="assertive">
-        {{ errorMessage }}
-      </div>
-      <div class="form-floating mb-3">
-        Don't have an account? <a routerLink="/signup" aria-label="Signup">Signup</a>
-      </div>
-      <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" aria-label="Login">Login</button>
-    </form>
-  </div>
+    <div class="container d-flex justify-content-center align-items-center">
+        <form class="w-100" (ngSubmit)="onSubmit()" style="max-width: 400px;" aria-labelledby="loginFormTitle"
+            #loginForm="ngForm" novalidate>
+            <div class="d-flex flex-column align-items-center">
+                <div class="elementor-widget-container mb-3">
+                    <img width="200" height="60"
+                        src="https://www.polussolutions.com/wp-content/uploads/2023/09/logo-1024x285.webp"
+                        class="attachment-large size-large wp-image-1563" alt=""
+                        sizes="(max-width: 800px) 100vw, 800px">
+                </div>
+                <h1 id="signupPageTitle" class="text-center font-weight-bold">
+                    SupportSuite
+                </h1>
+            </div>
+            <div class="form-floating mt-3 mb-3">
+                <div id="usernameHelp" class="form-text mb-2">Enter your username.</div>
+                <input type="text" class="form-control" id="username" name="username" placeholder="User Name"
+                    [(ngModel)]="loginObj.userName" required aria-required="true" aria-describedby="usernameHelp"/>
+                <div *ngIf="!loginObj.userName && loginForm.submitted" class="text-danger" role="alert">
+                    please enter valid Username.
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                <div id="passwordHelp" class="form-text">Enter your password.</div>
+                <input type="password" class="form-control" id="password" name="password" placeholder="Password"
+                    [(ngModel)]="loginObj.password" required aria-required="true" aria-describedby="passwordHelp">
+                <div *ngIf="!loginObj.password && loginForm.submitted" class="text-danger" role="alert">
+                    please enter valid Password.
+                </div>
+            </div>
+            <div class="form-floating mb-3">
+                Don't have an account? <a routerLink="/signup" aria-label="Signup">Signup</a>
+            </div>
+            <button class="w-100 btn btn-lg btn-primary mb-3" type="submit" aria-label="Login">Login</button>
+        </form>
+    </div>
 </div>

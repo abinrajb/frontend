@@ -9,17 +9,16 @@ import { SharedService } from '../shared.service';
 export class LoginComponent {
   errorMessage: string = '';
   loginObj: any = {
-    username: '',
+    userName: '',
     password: ''
   };
   private sharedService: SharedService;
-
   constructor(sharedService: SharedService) {
     this.sharedService = sharedService;
-  }
+    }
 
   onSubmit() {
-    if (!this.loginObj.username || !this.loginObj.password) {
+    if (!this.loginObj.userName || !this.loginObj.password) {
       this.errorMessage = 'Please fill all required fields.';
       return;
     }
@@ -31,7 +30,7 @@ export class LoginComponent {
       },
       error: (err) => {
         console.error('Login failed', err);
-        this.errorMessage = err.message || 'Invalid username or password';
+        this.errorMessage = err.message || 'Invalid userName or password';
       }
     });
   }
