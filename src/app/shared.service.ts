@@ -3,23 +3,31 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-    providedIn: 'root'
+  providedIn: 'root'
 })
 export class SharedService {
 
-    apiUrl = '/api';
+  constructor(private http: HttpClient) {}
 
-    constructor(private http: HttpClient) { }
+  login(loginPayload: any): Observable<any> {
+    return this.http.post<any>(`/log`, loginPayload);
+  }
 
-    // Login method
-    login(loginPayload: any): Observable<any> {
-        return this.http.post<any>('/log', loginPayload);
-    }
+  signup(signupPayload: any): Observable<any> {
+    return this.http.post<any>(`/sign`, signupPayload);
+  }
 
-    Signup(signupPayLoad: any): Observable<any> {
-        return this.http.post<any>('/sign', signupPayLoad)
-    }
-
+  getCountries(): Observable<Country[]> {
+    return this.http.get<Country[]>(`/count`);
+  }
 }
 
+interface Country {
+  countryCode: string;
+  countryName: string;
+  currencyCode: string;
+  updateTimestamp: Date;
+  updateUser: string;
+  countryCodeIso2: string;
+}
 

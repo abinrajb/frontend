@@ -10,5 +10,11 @@
     "secure": false,
     "changeOrigin": true,
     "pathRewrite": {"^/sign" : ""}
+  },
+  "/count": {
+    "target": "http://10.199.100.141:8080/api/countries",
+    "secure": false,
+    "changeOrigin": true,
+    "pathRewrite": {"^/count" : ""}
   }
 }

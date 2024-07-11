@@ -1,24 +1,9 @@
-.area {
-    background: #4e54c8;
-    background: -webkit-linear-gradient(to left, #8f94fb, #4e54c8);
-    width: 350px; /* Initial width */
-    height: 418px; /* Initial height */
+.gradient-custom-2 {
+    min-height: auto;
+    background: linear-gradient(to right, #1f7be4, #4ADEDE, #16e4b0,#4ADEDE,#1f7be4);
+    border-top-left-radius: 2%;
+    border-bottom-left-radius: 2%;
 }
-
-@media (max-width: 768px) {
-    .container {
-        flex-direction: column; /* Stack items vertically on smaller screens */
-        align-items: center; /* Center items horizontally */
-    }
-
-    .area {
-        width: 100%; /* Full width on smaller screens */
-        max-width: 350px; /* Limit maximum width */
-        height: auto; /* Allow height to adjust */
-        margin-bottom: 20px; /* Optional: Add margin for spacing */
-    }
-
-    form {
-        max-width: 100%; /* Ensure form stretches to fit container */
-    }
-}
+.border-light-subtle {
+    border: 3px solid rgba(5, 1, 1, 0.1);
+  }
