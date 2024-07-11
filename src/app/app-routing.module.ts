@@ -4,6 +4,7 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { LoginComponent } from './login/login.component';
 import { SignupComponent } from './signup/signup.component';
 import { HttpClientModule } from '@angular/common/http'
+import { ErrorComponent } from './error/error.component';
 
 
 const routes: Routes = [
@@ -11,6 +12,7 @@ const routes: Routes = [
   {path:'login', component:LoginComponent},
   {path:'signup', component:SignupComponent},
   {path:'homepage', component: HomepageComponent},
+  {path:'error', component: ErrorComponent},
   {path:'**', redirectTo:'login', pathMatch: 'full'}
 ];
 
